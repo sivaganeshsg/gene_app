@@ -7,6 +7,20 @@ bp = Blueprint('api', __name__)
 
 @bp.route("/genes", methods=["GET"])
 def search_genes():
+    # FINAL - Use this for any automated tool to create documentation based on the comments
+    """
+        Endpoint to search genes based on lookup and species. Provides 10 results per page.
+        Parameters:
+        lookup (String): Search based on name of the gene eg. BRCA1
+        species (String): Optional - Search based the name of the species to which the gene belongs
+        page_num (Int): Optional - Used to navigate the search result as only 10 results are provided per page
+
+        Returns:
+        json: The json response contains
+            current_page (Int), total_page (Int), total_matches_found (Int), gene_result (json)
+                gene_result contains the following data for each item
+                    ensembl_stable_id (String), gene_name (String), location (String), species (String)
+    """
 
     status_code = 200
     error = False
