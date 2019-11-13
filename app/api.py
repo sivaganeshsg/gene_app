@@ -59,19 +59,21 @@ def search_genes():
 
 
 def lookup_validator(lookup):
-    # Input validator for string/number/special_chars like "_"/"-"
+    # Lookup - Input validator for string/number/special_chars like "_"/"-", and minimum of length 3
     error = False
     status_code = 200
     error_message = None
     if (lookup is None) or (len(lookup) < 3) or (not re.match(r'^[A-Za-z0-9_-]+$', lookup)):
         error = True
+        # Response code based on Invalid input /  422 Unprocessable Entity
+        # Source: https://stackoverflow.com/questions/7939137/right-http-status-code-to-wrong-input
         status_code = 422
         error_message = "The lookup should contain only Alphanumeric character and should contain at least 3 characters"
     return {'error': error, 'status_code': status_code, 'error_message': error_message}
 
 
 def species_validator(species):
-    # Input validator for string/number/special_chars like "_"/"-"
+    # Species - Input validator for string/number/special_chars like "_"/"-", and minimum of length 1
     error = False
     status_code = 200
     error_message = None
@@ -87,6 +89,7 @@ def species_validator(species):
 
 
 def get_page_number(page_num):
+    # If the specified page num is valid or not.
     page = 1
     if (page_num is not None) and (page_num.isdigit()) and (page_num >= "0"):
         page = int(page_num)
