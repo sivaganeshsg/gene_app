@@ -10,7 +10,6 @@ class Gene(db.Model):
     display_label = db.Column(db.String(128))
     location = db.Column(db.String(60))
 
-    # FINAL: Check if it's necessary??
     def __init__(self, display_label, location, stable_id, species):
         self.display_label = display_label
         self.location = location
@@ -27,6 +26,7 @@ class GeneSchema(ma.Schema):
 
 gene_schema = GeneSchema()
 genes_schema = GeneSchema(many=True)
+# Can be changed later or accepted part of the input parameter
 items_per_page = 10
 
 
