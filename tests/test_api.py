@@ -20,6 +20,7 @@ class TestAPICases(unittest.TestCase):
             self.base_url = '/genes'
             self.params = {"lookup": "BRC"}
             self.invalid_params = {"lookup": "BR"}
+            self.illegal_params = {"lookup": "BR*"}
 
     # executed at the end of the test
     def tearDown(self):
@@ -34,6 +35,11 @@ class TestAPICases(unittest.TestCase):
     def test_api_with_two_char_in_lookup(self):
         print("\n===> Testing the genes endpoint with two character in lookup")
         response = self.app.get(self.base_url, query_string=self.invalid_params)
+        self.assertEqual(response.status_code, 422)
+
+    def test_api_with_invalid_char(self):
+        print("\n===> Testing the genes endpoint with illegal character")
+        response = self.app.get(self.base_url, query_string=self.illegal_params)
         self.assertEqual(response.status_code, 422)
 
     def test_post_method(self):
