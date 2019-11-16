@@ -51,4 +51,35 @@ To setup and start the application, run the following script from the 'gene_app'
 The `setup.sh` file configures the virtual environment, installs the necessary packages from `requirements.txt` and executes `start.sh` to run the flask app. 
 ### Config and env file
 
-All the configurations are declared in config.py while the `.env` contains the value such as Ensembl database details, SQLAlchemy Flag. Please note that the `.env` file should NEVER be shared on a repository for a real world application.   
+All the configurations are declared in config.py while the `.env` contains the value such as Ensembl database details, SQLAlchemy Flag. Please note that the `.env` file should NEVER be shared on a repository for a real world application.
+
+---
+
+## Request and Response:
+
+## Sample Request
+```http://127.0.0.1:5000/genes?lookup=BRC&species=anser_brachyrhynchus```
+
+## Sample Response
+```
+{
+    "current_page": 1,
+    "gene_result": [
+        {
+            "ensembl_stable_id": "ENSABRG00000013131",
+            "gene_name": "BRCA1",
+            "location": "NXHY01000201.1:747323-771146",
+            "species": "anser_brachyrhynchus"
+        },
+        {
+            "ensembl_stable_id": "ENSABRG00000020312",
+            "gene_name": "BRCC3",
+            "location": "NXHY01000005.1:10133012-10137594",
+            "species": "anser_brachyrhynchus"
+        }
+    ],
+    "total_matches_found": 2,
+    "total_page": 1
+}
+```
+    
