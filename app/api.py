@@ -7,19 +7,54 @@ bp = Blueprint('api', __name__)
 
 @bp.route("/genes", methods=["GET"])
 def search_genes():
-    # FINAL - Use this for any automated tool to create documentation based on the comments
     """
-        Endpoint to search genes based on lookup and species. Provides 10 results per page.
-        Parameters:
-        lookup (String): Search based on name of the gene eg. BRCA1
-        species (String): Optional - Search based the name of the species to which the gene belongs
-        page_num (Int): Optional - Used to navigate the search result as only 10 results are provided per page
+         **Search for a gene by lookup and species.**
+        This function allows users to get a list of gene result by searching through lookup(gene name) and species(optional)
 
-        Returns:
-        json: The json response contains
-            current_page (Int), total_page (Int), total_matches_found (Int), gene_result (json)
-                gene_result contains the following data for each item
-                    ensembl_stable_id (String), gene_name (String), location (String), species (String)
+        :parameter:
+        lookup (String): Search based on name of the gene eg. BRCA1
+
+        species (String): Optional - Search based the name of the species to which the gene belongs
+
+        page_num (Int): Optional - Used to navigate the search result, as only 10 results are provided per page
+
+        :returns:
+        current_page, total_matches_found, total_page, gene result in json and http status code
+
+        - Example 1:
+              curl -X GET 'http://localhost:5000/genes?lookup=BRC&species=anser_brachyrhynchus&page_num=1'
+        - Expected Success Response:
+                HTTP Status Code: 200
+                    {
+                        "current_page": 1,
+                        "gene_result": [
+                            {
+                                "ensembl_stable_id": "ENSABRG00000013131",
+                                "gene_name": "BRCA1",
+                                "location": "NXHY01000201.1:747323-771146",
+                                "species": "anser_brachyrhynchus"
+                            },
+                            {
+                                "ensembl_stable_id": "ENSABRG00000020312",
+                                "gene_name": "BRCC3",
+                                "location": "NXHY01000005.1:10133012-10137594",
+                                "species": "anser_brachyrhynchus"
+                            }
+                        ],
+                        "total_matches_found": 2,
+                        "total_page": 1
+                    }
+
+        - Example 2:
+                curl -X GET 'http://localhost:5000/genes?lookup=BR'
+        - Expected Success Response:
+                HTTP Status Code: 422
+                    {
+                        "messages": [
+                            "The lookup should contain only Alphanumeric character and should contain at least 3 characters"
+                        ]
+                    }
+
     """
 
     status_code = 200
