@@ -34,3 +34,15 @@ As mentioned earlier, whenever there is a new deployment, we can run third-party
 ### Code Review
 
 Not all the errors are caught using Automated testing. Logical errors can impact the application to deliver an incorrect response. While developing the application with team, we can employ a code review process with fellow developers to find the errors and reduce them.
+
+## Documentation
+
+The project uses Sphinx documentation. From the functions and class, Sphinx can autogenerate the document in a different version - html in this instance.  The configuration for the autogeneration is available in `docs/source/conf.py`. The newly created documentation for the API can be viewed in [docs/build/html/index.html#app.api.search_genes](docs/build/html/index.html#app.api.search_genes) 
+
+
+
+Reference used for the documentation
+
+- [Sphinx-doc](https://www.sphinx-doc.org/en/master/)
+- [Python Documentation using Sphinx](https://www.patricksoftwareblog.com/python-documentation-using-sphinx/)
+- [A Simple Tutorial on How to document your Python Project using Sphinx and Rinohtype](https://medium.com/@richdayandnight/a-simple-tutorial-on-how-to-document-your-python-project-using-sphinx-and-rinohtype-177c22a15b5b)
