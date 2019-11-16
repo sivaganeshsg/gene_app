@@ -19,6 +19,23 @@ The endpoint returns the following response that matches the given lookup and sp
 
 The gene_result is limited to 10 per page and can be navigated by passing 'page_num' parameter.
 
+### Methodologies
+
+- The application is built using modular, reusable code where applicable.
+- The naming of the class, function, variable makes it easy to understand for fellow developers/team.
+- During the development, the API is tested using Postman Client.
+- The `lookup_validator` and `species_validator` function validates the input parameters, and appropriate HTTP status code is given to the client if the validation fails. As the helper function grows, we can move the functions it to a Utility/Helper class.
+- The `.env` file contains all the database configuration. It allows the application to retrieve the appropriate configuration from the different environment (development/QA/staging/production) and the repository will never share the .env file.
+- The query filter uses query chaining, making it easy to add more filters.
+- The application has an error handling mechanism to catch both client-side(404, 405) and server-side errors/exceptions. In terms of server-side errors and exception, it displays a generic error message to the user while the actual error message can be logged to a file/database/external logging service to identify the issue.
+
+### Future Improvements
+- The definition of items_per_page, regular expression can be moved to a file or a settings table in the database to make it easy to modify in one place.
+- The `items_per_page` can be passed in the parameter to give more flexibility for the users - with higher items per page limitation(e.g. 1000) and default items per page.
+- Define all the error code and corresponding error messages in a separate `error_lookup` table and retrieve the error messages dynamically, making the code cleaner. We can use this information in the documentation for developers to quickly identify the issue with the request based on the error code.
+- To protect the application/database service from brute force or a client using the service in a way that affects other users, we can employ API rate limiters based on IP address or token-based API request.
+
+
 ### Prerequisites
 
 You need have the following software to run the program
@@ -54,13 +71,12 @@ The `setup.sh` file configures the virtual environment, installs the necessary p
 All the configurations are declared in config.py while the `.env` contains the value such as Ensembl database details, SQLAlchemy Flag. Please note that the `.env` file should NEVER be shared on a repository for a real world application.
 
 ---
-
 ## Request and Response:
 
-## Sample Request
+### Sample Request
 ```http://127.0.0.1:5000/genes?lookup=BRC&species=anser_brachyrhynchus```
 
-## Sample Response
+### Sample Response
 ```
 {
     "current_page": 1,
@@ -82,4 +98,8 @@ All the configurations are declared in config.py while the `.env` contains the v
     "total_page": 1
 }
 ```
-    
+---
+
+## Task 2, 3, 4
+
+Task about Deployment, Testing and Documentation can be found in [TASKS.md](TASKS.md)
