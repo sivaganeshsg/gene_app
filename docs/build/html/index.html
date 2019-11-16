@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Gene App’s documentation! &#8212; Gene App 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-gene-app-s-documentation">
+<h1>Welcome to Gene App’s documentation!<a class="headerlink" href="#welcome-to-gene-app-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-app.api">
+<span id="geneapp-api"></span><h1>GeneApp API<a class="headerlink" href="#module-app.api" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="app.api.search_genes">
+<code class="sig-prename descclassname">app.api.</code><code class="sig-name descname">search_genes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.api.search_genes" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p><strong>Search for a gene by lookup and species.</strong></p>
+</div></blockquote>
+<p>This function allows users to get a list of gene result by searching through lookup(gene name) and species(optional)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameter</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>lookup (String): Search based on name of the gene eg. BRCA1</p>
+<p>species (String): Optional - Search based the name of the species to which the gene belongs</p>
+<p>page_num (Int): Optional - Used to navigate the search result, as only 10 results are provided per page</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+<p>current_page, total_matches_found, total_page, gene result in json and http status code</p>
+<ul>
+<li><dl class="simple">
+<dt>Example 1:</dt><dd><p>curl -X GET ‘<a class="reference external" href="http://localhost:5000/genes?lookup=BRC&amp;species=anser_brachyrhynchus&amp;page_num=1">http://localhost:5000/genes?lookup=BRC&amp;species=anser_brachyrhynchus&amp;page_num=1</a>’</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Expected Success Response:</dt><dd><dl>
+<dt>HTTP Status Code: 200</dt><dd><dl>
+<dt>{</dt><dd><p>“current_page”: 1,
+“gene_result”: [</p>
+<blockquote>
+<div><dl class="simple">
+<dt>{</dt><dd><p>“ensembl_stable_id”: “ENSABRG00000013131”,
+“gene_name”: “BRCA1”,
+“location”: “NXHY01000201.1:747323-771146”,
+“species”: “anser_brachyrhynchus”</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><p>“ensembl_stable_id”: “ENSABRG00000020312”,
+“gene_name”: “BRCC3”,
+“location”: “NXHY01000005.1:10133012-10137594”,
+“species”: “anser_brachyrhynchus”</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>],
+“total_matches_found”: 2,
+“total_page”: 1</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Example 2:</dt><dd><p>curl -X GET ‘<a class="reference external" href="http://localhost:5000/genes?lookup=BR">http://localhost:5000/genes?lookup=BR</a>’</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>Expected Success Response:</dt><dd><dl>
+<dt>HTTP Status Code: 422</dt><dd><dl>
+<dt>{</dt><dd><dl class="simple">
+<dt>“messages”: [</dt><dd><p>“The lookup should contain only Alphanumeric character and should contain at least 3 characters”</p>
+</dd>
+</dl>
+<p>]</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Gene App</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Siva.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
